@@ -1,0 +1,8 @@
+bugs:
+  fix inter-object collision bugs
+
+ideas:
+  1) hp-counter display in the middle of each circle decrementing on impact -- spliced at 0 (easy)
+  2) hp-counter that decreases circle size upon impact, possibly based on aggregate speed (hard)
+  3) roaming shader circles changing color based on which has the most circles inside (hard)
+  4) instead of flipping velocity aggregate velocity then distribute 90:10 to create pseudo-innertia  
