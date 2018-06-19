@@ -1,5 +1,6 @@
 bugs:
-  fix inter-object collision bugs
+  1) fix inter-object collision bugs
+  2) update for loop to check if circle exists at x/y +- r
 
 ideas:
   1) hp-counter display in the middle of each circle decrementing on impact -- spliced at 0 (easy)
