@@ -1,0 +1,82 @@
+// click to generate a batch of circles
+// set cicles per click and max circles in mousePressed()
+
+var clickCounter = 0 ;
+mousePressed = function(){
+    if (clickCounter < 50){clickCounter+=10;}
+    println("Circles = " +clickCounter);
+};    
+
+var circle = function(x,y,r,dx,dy) {
+    this.x = x;
+    this.y = y;
+    this.r = 12.5;
+    this.dx = dx;
+    this.dy = dy;
+
+/*doesn't work yet*/
+    this.cross = function(other) {
+        var d = dist(this.x , this.y , other.x , other.y );
+    // return (d < this.r + other.r);
+        if(d < this.r + other.r)
+            {return true;}
+        else
+            {return false;}
+    };
+    
+    this.show = function(){
+        ellipse(this.x, this.y, this.r*2, this.r*2);
+    }; 
+    
+    this.movement = function(){
+        this.x = this.x + this.dx;
+        this.y = this.y + this.dy;
+    };
+    
+    this.borders = function(){
+        if( this.x - this.r < 0 || 
+        this.x + this.r > width || 
+        this.y - this.r < 0 || 
+        this.y + this.r > height
+        ) {
+            this.dx = -this.dx; 
+            this.dy = -this.dy; 
+        }
+    };
+};
+
+var Circles = [];
+
+draw= function() {
+    background (255);
+
+// create circles and push to array
+    for (var i = 0; i < clickCounter; i++) {
+        Circles.push( new circle(   
+        // (x,y,r,dx,dy)                    
+                random(0+50,width-50), random(0+50,height-50), this.r, 
+                random(-1.5,1.5), random(-1.5,1.5)  )
+            );
+        Circles[i].show();
+        Circles[i].movement();
+        Circles[i].borders();
+
+/*doesn't work yet*/
+// for some reason input var other seems to never be evaluated as anything other than 0
+        // for (var j = 0 ; j < Circles.length ; j++) { 
+        //         if(Circles[i].cross(Circles[j]) )
+        //         {
+        //             Circles[i].dx = -Circles[i].dx;
+        //             Circles[j].dx = -Circles[j].dx;
+        //             Circles[i].dy = -Circles[i].dy;
+        //             Circles[j].dy = -Circles[j].dy;
+        //         }
+        //     }
+    }
+};
+
+/*
+REFERENCES:
+    1) CODING TRAIN: 7.6 Pt I: https://www.youtube.com/watch?v=uAfw-ko3kB8
+    2) CODING TRAIN: 7.6 Pt II: https://www.youtube.com/watch?v=GY-c2HO2liA
+*/
